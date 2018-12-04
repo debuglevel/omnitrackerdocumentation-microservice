@@ -33,7 +33,8 @@ class RestEndpoint {
         apiVersion("1", true)
         {
             path("/folders") {
-                get("/", "application/json", FolderController.getList())
+                get("/", "application/json", FolderController.getListJson())
+                get("/", "text/xml", FolderController.getListXml())
             }
         }
 
