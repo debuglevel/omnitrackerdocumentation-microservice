@@ -33,8 +33,11 @@ class RestEndpoint {
         apiVersion("1", true)
         {
             path("/folders") {
-                get("/", "application/json", FolderController.getListJson())
-                get("/", "text/xml", FolderController.getListXml())
+                //get("/", "text/xml", FolderController.getListXmlHandler())
+                //get("/", "application/json", FolderController.getListJsonHandler())
+
+                // handle accept-header with a custom function, as OMNITRACKER only sends "*/*" which breaks usual format delivery
+                get("/", "*/*", FolderController.getListFormatParameter())
             }
         }
 

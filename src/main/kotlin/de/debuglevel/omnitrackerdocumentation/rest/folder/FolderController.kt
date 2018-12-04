@@ -10,21 +10,34 @@ import spark.kotlin.RouteHandler
 object FolderController {
     private val logger = KotlinLogging.logger {}
 
-    fun getListJson(): RouteHandler.() -> String {
+    fun getListJsonHandler(): RouteHandler.() -> String {
         return {
-            type(contentType = "application/json")
-            JsonTransformer.render(getList())
+            logger.debug { "Getting folder list via JSON handler..." }
+            getListJson()
         }
     }
 
-    fun getListXml(): RouteHandler.() -> String {
+    private fun RouteHandler.getListJson(): String {
+        logger.debug { "Getting folder list as JSON..." }
+        type(contentType = "application/json")
+        return JsonTransformer.render(getList())
+    }
+
+    fun getListXmlHandler(): RouteHandler.() -> String {
         return {
-            type(contentType = "text/xml")
-            XmlTransformer.render(getList())
+            logger.debug { "Getting folder list via XML handler..." }
+            getListXml()
         }
+    }
+
+    private fun RouteHandler.getListXml(): String {
+        logger.debug { "Getting folder list as XML..." }
+        type(contentType = "text/xml")
+        return XmlTransformer.render(getList())
     }
 
     private fun getList(): List<FolderDTO> {
+        logger.debug { "Getting folder list..." }
         return OmnitrackerDatabase().folders.values
                 .map { folder ->
                     FolderDTO(
@@ -46,5 +59,24 @@ object FolderController {
                                                 field.getDescription(StringTranslationLanguage.German)?.guid)
                                     })
                 }
+    }
+
+    fun getListFormatParameter(): RouteHandler.() -> String {
+        return {
+            logger.debug { "Getting folder list via custom handler..." }
+            logger.debug { "Trying to determine by query parameter..." }
+            when (request.queryParams("format")) {
+                "xml" -> getListXml()
+                "json" -> getListJson()
+                else -> {
+                    logger.debug { "No known query parameter set; trying to determine by accept header..." }
+                    when (request.headers("accept")) {
+                        "text/xml" -> getListXml()
+                        "application/json" -> getListJson()
+                        else -> getListJson()
+                    }
+                }
+            }
+        }
     }
 }
