@@ -35,15 +35,15 @@ object FolderController {
                                     .map { field ->
                                         FieldDTO(
                                                 field.id,
-                                                field.getName(StringTranslationLanguage.German),
-                                                null,
-                                                null,
-                                                field.getComment(StringTranslationLanguage.German),
-                                                null,
-                                                null,
-                                                field.getDescription(StringTranslationLanguage.German),
-                                                null,
-                                                null)
+                                                field.getName(StringTranslationLanguage.German)?.text,
+                                                field.getName(StringTranslationLanguage.German)?.id,
+                                                field.getName(StringTranslationLanguage.German)?.guid,
+                                                field.getComment(StringTranslationLanguage.German)?.text,
+                                                field.getComment(StringTranslationLanguage.German)?.id,
+                                                field.getComment(StringTranslationLanguage.German)?.guid,
+                                                field.getDescription(StringTranslationLanguage.German)?.text,
+                                                field.getDescription(StringTranslationLanguage.German)?.id,
+                                                field.getDescription(StringTranslationLanguage.German)?.guid)
                                     })
                 }
     }
