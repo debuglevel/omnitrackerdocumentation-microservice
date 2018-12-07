@@ -11,10 +11,12 @@ class FolderDTO {
     constructor(id: Int,
                 name: String,
                 path: String,
+                alias: String?,
                 fields: List<FieldDTO>) {
         this.id = id
         this.name = name
         this.path = path
+        this.alias = alias
         this.fields = fields
     }
 
@@ -23,6 +25,8 @@ class FolderDTO {
     val name: String
 
     val path: String
+
+    val alias: String?
 
     @JacksonXmlElementWrapper(localName = "fields")
     @JacksonXmlProperty(localName = "field")

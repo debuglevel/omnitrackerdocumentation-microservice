@@ -1,6 +1,8 @@
 package de.debuglevel.omnitrackerdocumentation.rest.folder
 
 data class FieldDTO(val id: Int,
+                    val alias: String?,
+                    val dataType: String?,
                     val name: String?,
                     val nameStringTranslationId: Int?,
                     val nameStringTranslationGuid: String?,

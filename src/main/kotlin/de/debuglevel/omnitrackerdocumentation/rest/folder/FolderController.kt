@@ -44,10 +44,13 @@ object FolderController {
                             folder.id,
                             folder.name,
                             folder.path,
+                            folder.alias,
                             folder.fields.values
                                     .map { field ->
                                         FieldDTO(
                                                 field.id,
+                                                field.alias,
+                                                field.type.toString(),
                                                 field.getName(StringTranslationLanguage.German)?.text,
                                                 field.getName(StringTranslationLanguage.German)?.id,
                                                 field.getName(StringTranslationLanguage.German)?.guid,
