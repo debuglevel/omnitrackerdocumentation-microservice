@@ -9,24 +9,40 @@ class FolderDTO {
      * https://github.com/FasterXML/jackson-module-kotlin/issues/153
      */
     constructor(id: Int,
-                name: String,
+            //name: String,
                 path: String,
                 alias: String?,
+                name: String?,
+                nameStringTranslationId: Int?,
+                nameStringTranslationGuid: String?,
+                description: String?,
+                descriptionStringTranslationId: Int?,
+                descriptionStringTranslationGuid: String?,
                 fields: List<FieldDTO>) {
         this.id = id
-        this.name = name
+        //this.name = name
         this.path = path
         this.alias = alias
+        this.name = name
+        this.nameStringTranslationId = nameStringTranslationId
+        this.nameStringTranslationGuid = nameStringTranslationGuid
+        this.description = description
+        this.descriptionStringTranslationId = descriptionStringTranslationId
+        this.descriptionStringTranslationGuid = descriptionStringTranslationGuid
         this.fields = fields
     }
 
     val id: Int
-
-    val name: String
-
+    //val name: String
     val path: String
-
     val alias: String?
+
+    val name: String?
+    val nameStringTranslationId: Int?
+    val nameStringTranslationGuid: String?
+    val description: String?
+    val descriptionStringTranslationId: Int?
+    val descriptionStringTranslationGuid: String?
 
     @JacksonXmlElementWrapper(localName = "fields")
     @JacksonXmlProperty(localName = "field")
