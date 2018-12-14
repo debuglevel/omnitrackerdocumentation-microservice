@@ -79,7 +79,7 @@ dependencies {
     compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: '1.3.10' //needed, as jackson-module-kotlin provides an old 1.2 version
 
     // OMNITRACKER Database Binding
-    compile 'de.debuglevel.omnitrackerdatabasebinding:omnitrackerdatabasebinding:0.0.6'
+    compile 'de.debuglevel.omnitrackerdatabasebinding:omnitrackerdatabasebinding:0.0.7'
 
     // khttp (HTTP client)
     //compile 'com.github.jkcclemens:khttp:-SNAPSHOT'
